@@ -10,7 +10,7 @@ export type MainStackParamList = {
     // NotFoundScreen
 };
 
-export type RoomsScreenProps = StackScreenProps<MainStackParamList, "Rooms">; //combines two below
+export type RoomsScreenProps = StackScreenProps<MainStackParamList, "Rooms">;
 export type RoomsScreenNavigationProp = StackNavigationProp<MainStackParamList, "Rooms">;
 export type RoomsScreenRouteProp = RouteProp<MainStackParamList, "Rooms">;
 

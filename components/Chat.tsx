@@ -29,6 +29,7 @@ const styles = StyleSheet.create({
     message: {
         backgroundColor: Colors.WHITE,
         flexDirection: "row",
+        alignItems: "center",
         padding: 12,
         borderRadius: 12,
         // depends if its sent/received = bottomRight/bottomLeft

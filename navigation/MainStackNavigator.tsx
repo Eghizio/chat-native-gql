@@ -1,7 +1,7 @@
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
-import Rooms from "../screens/Rooms";
-import ChatRoom from "../screens/ChatRoom";
+import RoomsScreen from "../screens/RoomsScreen";
+import ChatRoomScreen from "../screens/ChatRoomScreen";
 import { MainStackParamList } from "../types/navigation";
 
 const MainStack = createStackNavigator<MainStackParamList>();
@@ -13,11 +13,11 @@ const MainStackNavigator = () => {
         <Navigator initialRouteName="Rooms">
             <Screen
                 name="Rooms"
-                component={Rooms}
+                component={RoomsScreen}
             />
             <Screen
                 name="ChatRoom"
-                component={ChatRoom}
+                component={ChatRoomScreen}
             />
         </Navigator>
     );

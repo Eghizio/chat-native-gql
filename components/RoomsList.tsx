@@ -34,21 +34,6 @@ const styles = StyleSheet.create({
         backgroundColor: Colors.BLUE.TINT_2,
         paddingVertical: 100, // temp
     },
-    roomCard: {
-        padding: 15,
-        flexDirection: "row",
-        borderRadius: 12,
-        backgroundColor: Colors.WHITE,
-        marginVertical: 15, // temp
-    },
-    roomImg: {
-        width: 50,
-        height: 50,
-        borderRadius: 50,
-    },
-    roomName: {
-        padding: 5
-    }
 });
 
 export default RoomsList;

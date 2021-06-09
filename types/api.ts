@@ -22,3 +22,5 @@ export type Message = {
 };
 
 export type UserRoom = Pick<Room, "id" | "name" | "roomPic">;
+
+export type Token = string;
