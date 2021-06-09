@@ -2,7 +2,7 @@ export default {
   WHITE: "#FFFFFF",
   BLACK: "#1A1A1A",
   ACTIVE: "#A8FF76",
-  ERROR: "##FF445A",
+  ERROR: "#FF445A",
   PLUM: {
     NORMAL: "#5603AD",
     TINT_1: "#993AFC",
