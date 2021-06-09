@@ -18,4 +18,4 @@ export default {
     TINT_1: "#BFC1CC",
     TINT_2: "#E9EAEE",
   },
-};
+} as const;
