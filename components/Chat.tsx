@@ -4,7 +4,7 @@ import Colors from "../constants/Colors";
 import { Room } from "../types/api";
 
 
-type Props = {
+interface Props {
     room: Room;
 };
 

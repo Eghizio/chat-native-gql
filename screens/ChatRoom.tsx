@@ -1,9 +1,8 @@
 import React from "react";
-import { View, Text, TouchableOpacity, Image, StyleSheet } from "react-native";
-import { useNavigation, useRoute } from "@react-navigation/native";
-import useRoom from "../hooks/useRoom";
-import Colors from "../constants/Colors";
+import { View, Text, TouchableOpacity } from "react-native";
 import Chat from "../components/Chat";
+import useRoom from "../hooks/useRoom";
+import { ChatRoomScreenProps } from "../types/navigation";
 
 type RouteProps = {
     params: {
@@ -11,13 +10,10 @@ type RouteProps = {
     }
 };
 
-interface Props {}
+interface Props extends ChatRoomScreenProps {};
 
-const ChatRoom = ({}: Props) => {
-    const navigation = useNavigation();
-    const route = useRoute(); // gotta fix typings 
-    //(route as RouteProps).params.roomId ||
-    const { data: roomData } = useRoom("fec17ce6-6ec7-409e-b4fb-231c20e60017");
+const ChatRoom = ({ navigation, route }: Props) => {
+    const { data: roomData } = useRoom(route.params.roomId || "fec17ce6-6ec7-409e-b4fb-231c20e60017"); // "fec17ce6-6ec7-409e-b4fb-231c20e60017"
 
     return (
         <View>

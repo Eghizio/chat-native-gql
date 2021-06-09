@@ -3,9 +3,10 @@ import { View, Text, TouchableOpacity, Image, StyleSheet } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import Colors from "../constants/Colors";
 import { UserRoom } from "../types/api";
+import RoomCard from "./RoomCard";
 
 
-type Props = {
+interface Props {
     rooms: UserRoom[] | undefined;
 };
 
@@ -21,12 +22,7 @@ const RoomsList = ({ rooms }: Props) => {
         <View style={styles.roomsList}>
             {rooms.map(room =>
                 <TouchableOpacity key={room.id} onPress={() => navigateToChatRoom(room.id)}>
-                    <View style={styles.roomCard}>
-                        <Image style={styles.roomImg} source={{ uri: room.roomPic }}/>
-                        <Text style={styles.roomName}>
-                            {room.name}
-                        </Text>
-                    </View>
+                    <RoomCard room={room}/>
                 </TouchableOpacity>
             )}
         </View>

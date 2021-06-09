@@ -2,22 +2,25 @@ import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import Rooms from "../screens/Rooms";
 import ChatRoom from "../screens/ChatRoom";
+import { MainStackParamList } from "../types/navigation";
 
-const Stack = createStackNavigator();
+const MainStack = createStackNavigator<MainStackParamList>();
 
-const ScreenNavigator = () => {
+const MainStackNavigator = () => {
+    const { Navigator, Screen } = MainStack;
+
     return (
-        <Stack.Navigator initialRouteName="Rooms">
-            <Stack.Screen
+        <Navigator initialRouteName="Rooms">
+            <Screen
                 name="Rooms"
                 component={Rooms}
             />
-            <Stack.Screen
+            <Screen
                 name="ChatRoom"
                 component={ChatRoom}
             />
-        </Stack.Navigator>
+        </Navigator>
     );
 };
 
-export default ScreenNavigator;
+export default MainStackNavigator;
