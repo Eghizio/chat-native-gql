@@ -1,8 +1,8 @@
 import { ApolloClient, InMemoryCache } from "@apollo/client";
-import { GQL_HTTP_URI } from "./env";
+import { authLink, httpLink } from "./httpLink";
 
 export const client = new ApolloClient({
-    uri: GQL_HTTP_URI,
+    link: authLink.concat(httpLink),
     cache: new InMemoryCache()
 });
 
