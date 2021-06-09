@@ -1,7 +1,7 @@
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import Rooms from "../screens/Rooms";
-import Chat from "../screens/Chat";
+import ChatRoom from "../screens/ChatRoom";
 
 const Stack = createStackNavigator();
 
@@ -13,8 +13,8 @@ const ScreenNavigator = () => {
                 component={Rooms}
             />
             <Stack.Screen
-                name="Chat"
-                component={Chat}
+                name="ChatRoom"
+                component={ChatRoom}
             />
         </Stack.Navigator>
     );
