@@ -1,0 +1,4 @@
+// todo: move to .env
+export const GQL_HTTP_URI = "https://chat.thewidlarzgroup.com/api/graphql";
+
+export const TOKEN = "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJjaGF0bHkiLCJleHAiOjE2MjQ1NTcyMTksImlhdCI6MTYyMjEzODAxOSwiaXNzIjoiY2hhdGx5IiwianRpIjoiYTY1M2NiOTQtZDEyMS00NDgxLThjNDgtM2ZhODJjMjg3ZjkzIiwibmJmIjoxNjIyMTM4MDE4LCJzdWIiOiI0NzMwNDBmMi05NTRjLTQ2N2YtYjJjZC03M2E1YzkzZGE5NDEiLCJ0eXAiOiJhY2Nlc3MifQ.qzCyshjCkxD1MO0UbpOrVKiD1bNdCWLnZcKgaBNmp3P17gvd95LUPtPof0p1UMDbwXLC8P8ayDhYB5sIPeWzDw";
