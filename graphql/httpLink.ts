@@ -10,7 +10,7 @@ export const httpLink = createHttpLink({
 
 export const authLink = setContext(async (_, { headers }) => {
     // retrieves token from storage with each request
-    const token = await AsyncStorage.getItem("token") || TOKEN; // todo: implement storage logic
+    const token = await AsyncStorage.getItem("token");
 
     return {
         headers: {

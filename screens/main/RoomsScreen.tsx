@@ -1,4 +1,5 @@
 import React from "react";
+import { Button } from "react-native";
 import styled from "styled-components/native";
 import RoomsList from "../../components/RoomsList";
 import Colors from "../../constants/Colors";
@@ -11,8 +12,12 @@ interface Props extends RoomsScreenProps {};
 
 
 const RoomsScreen = ({ navigation }: Props) => {
-    const { logout } = useAuth();
+    const { logout, ...debugAuth } = useAuth();
     const { data: userRoomsData } = useUsersRooms();
+
+    const debug = () => {
+        console.log(debugAuth);
+    };
 
     return (
         <Screen>
@@ -20,6 +25,7 @@ const RoomsScreen = ({ navigation }: Props) => {
             <LogoutButton onPress={logout}>
                 <LogoutButtonText>Logout</LogoutButtonText>
             </LogoutButton>
+            <Button title="DEBUG" onPress={debug}/>
         </Screen>
     );
 };

@@ -1,4 +1,5 @@
 import React from "react";
+import { View } from "react-native";
 import styled from "styled-components/native";
 import Colors from "../../constants/Colors";
 import { useAuth } from "../../context/AuthProvider";
@@ -29,37 +30,41 @@ const RegisterScreen = ({ navigation }: Props) => {
         <Screen>
             <Heading>Create account</Heading>
             <Form>
-                <FieldSet>
-                    <Label>e-mail address</Label>
-                    <Input/>
-                </FieldSet>
-                <FieldSet>
-                    <Label>first name</Label>
-                    <Input/>
-                </FieldSet>
-                <FieldSet>
-                    <Label>last name</Label>
-                    <Input/>
-                </FieldSet>
-                <FieldSet>
-                    <Label>password</Label>
-                    <Input/>
-                </FieldSet>
-                <FieldSet>
-                    <Label>password confirmation</Label>
-                    <Input/>
-                </FieldSet>
+                <View>
+                    <FieldSet>
+                        <Label>e-mail address</Label>
+                        <Input/>
+                    </FieldSet>
+                    <FieldSet>
+                        <Label>first name</Label>
+                        <Input/>
+                    </FieldSet>
+                    <FieldSet>
+                        <Label>last name</Label>
+                        <Input/>
+                    </FieldSet>
+                    <FieldSet>
+                        <Label>password</Label>
+                        <Input/>
+                    </FieldSet>
+                    <FieldSet>
+                        <Label>password confirmation</Label>
+                        <Input/>
+                    </FieldSet>
+                </View>
 
-                <SubmitButton onPress={() => handleRegister()}>
-                    <SubmitButonText>Sign up</SubmitButonText>
-                </SubmitButton>
+                <View>
+                    <SubmitButton onPress={() => handleRegister()}>
+                        <SubmitButonText>Sign up</SubmitButonText>
+                    </SubmitButton>
 
-                <FormFooter>
-                    <FormFooterText>
-                        By clicking sign up button you agree with
-                        <Link><LinkText>the terms and conditions</LinkText></Link> and <Link><LinkText>the privacy policy.</LinkText></Link>
-                    </FormFooterText>
-                </FormFooter>
+                    <FormFooter>
+                        <FormFooterText>
+                            By clicking sign up button you agree with
+                            <Link><LinkText>the terms and conditions</LinkText></Link> and <Link><LinkText>the privacy policy.</LinkText></Link>
+                        </FormFooterText>
+                    </FormFooter>
+                </View>
             </Form>
         </Screen>
     );
@@ -78,7 +83,10 @@ const Heading = styled.Text`
 `;
 
 const Form = styled.View`
+    flex: 1;
     align-items: center;
+    justify-content: space-between;
+    padding: 36px 0;
 `;
 // or maybe shall i name it Row?
 const FieldSet = styled.View``;
@@ -102,13 +110,18 @@ const SubmitButonText = styled.Text`
     color: ${Colors.WHITE};
 `;
 
-const FormFooter = styled.View``;
+//Side note
+const FormFooter = styled.View`
+    padding-top: 15px;
+`;
 const FormFooterText = styled.Text`
     text-align: center;
 `;
 const Link = styled.TouchableOpacity``;
 const LinkText = styled.Text`
     color: ${Colors.BLUE.NORMAL};
+    text-decoration: underline;
+    text-decoration-color: ${Colors.BLUE.NORMAL};
 `;
 
 

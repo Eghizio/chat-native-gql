@@ -1,4 +1,5 @@
 import React from "react";
+import { Button, View } from "react-native";
 import styled from "styled-components/native";
 
 import Colors from "../../constants/Colors";
@@ -10,7 +11,7 @@ interface Props extends LoginScreenProps {};
 
 // validate form data
 const LoginScreen = ({ navigation }: Props) => {
-    const { login } = useAuth();
+    const { login, ...authDebug } = useAuth();
 
     const navigateToRegister = () => {
         navigation.navigate("Register");
@@ -23,29 +24,38 @@ const LoginScreen = ({ navigation }: Props) => {
         // AuthStack takes care of navigating to MainStack
     };
 
+    const debug = () => {
+        console.log(authDebug)
+    };
+
     return (
         <Screen>
             <Heading>Welcome back</Heading>
             <SubHeading>Log in and stay in touch with everyone!</SubHeading>
             <Form>
-                <FieldSet>
-                    <Label>e-mail address</Label>
-                    <Input/>
-                </FieldSet>
-                <FieldSet>
-                    <Label>password</Label>
-                    <Input/>
-                </FieldSet>
+                <View>
+                    <FieldSet>
+                        <Label>e-mail address</Label>
+                        <Input/>
+                    </FieldSet>
+                    <FieldSet>
+                        <Label>password</Label>
+                        <Input/>
+                    </FieldSet>
+                </View>
 
-                <SubmitButton onPress={() => handleLogin()}>
-                    <SubmitButonText>Log in</SubmitButonText>
-                </SubmitButton>
+                <View>
+                    <SubmitButton onPress={() => handleLogin()}>
+                        <SubmitButonText>Log in</SubmitButonText>
+                    </SubmitButton>
 
-                <FormFooter>
-                    <FormFooterText>
-                        Not a member? <Link onPress={navigateToRegister}><LinkText>Create account now</LinkText></Link>
-                    </FormFooterText>
-                </FormFooter>
+                    <FormFooter>
+                        <FormFooterText>
+                            Not a member? <Link onPress={navigateToRegister}><LinkText>Create account now</LinkText></Link>
+                        </FormFooterText>
+                    </FormFooter>
+                </View>
+                <Button title="DEBUG" onPress={debug}/>
             </Form>
         </Screen>
     );
@@ -69,7 +79,10 @@ const SubHeading = styled.Text`
 `;
 
 const Form = styled.View`
+    flex: 1;
     align-items: center;
+    justify-content: space-between;
+    padding: 36px 0;
 `;
 // or maybe shall i name it Row?
 const FieldSet = styled.View``;
@@ -93,11 +106,17 @@ const SubmitButonText = styled.Text`
     color: ${Colors.WHITE};
 `;
 
-const FormFooter = styled.View``;
+const FormFooter = styled.View`
+    padding-top: 15px;
+`;
+
+//Side note
 const FormFooterText = styled.Text``;
 const Link = styled.TouchableOpacity``;
 const LinkText = styled.Text`
     color: ${Colors.BLUE.NORMAL};
+    text-decoration: underline;
+    text-decoration-color: ${Colors.BLUE.NORMAL};
 `;
 
 

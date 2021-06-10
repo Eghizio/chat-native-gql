@@ -35,7 +35,7 @@ const AuthProvider: React.FC = ({ children }) => {
     const [token, setToken] = useState("");
     const [user, setUser] = useState<AuthContextValue["user"]>(null);
     // loading for spinner?
-    const { data: userData, refetch } = useCurrentUser();
+    const { data: userData } = useCurrentUser();
     const [registerUser] = useMutation<{registerUser: Session["user"]}>(REGISTER_USER);
     const [loginUser] = useMutation<{loginUser: Session}>(LOGIN_USER);
 
@@ -49,26 +49,27 @@ const AuthProvider: React.FC = ({ children }) => {
             setToken(token);
         })();
         
-    }, []);
+    }, [userData]);
 
     const register: AuthContextValue["register"] = async (registerPayload) => {
-        //messy casting tbh
-        const registerResponse = await registerUser({ variables: { ...registerPayload } });
-        if(!registerResponse.data) return null;
-        return registerResponse.data.registerUser;
+        const { data, errors } = await registerUser({ variables: { ...registerPayload } });
+        
+        if(errors || !data) return null;
+        return data.registerUser;
     };
 
     const login: AuthContextValue["login"] = async ({ email, password }) => {
-        const sessionResponse = await loginUser({ variables: { email, password } });
-        // temp validation, could be better
-        if(!sessionResponse.data) return null;
+        const { data, errors } = await loginUser({ variables: { email, password } });
 
-        const { token, user } = sessionResponse.data.loginUser;
+        // temp validation, could be better
+        if(errors || !data) return null;
+
+        const { token, user } = data.loginUser;
         // yuck
         setItem(token);
         setToken(token);
         setUser(user);
-        return sessionResponse.data.loginUser;
+        return data.loginUser;
     };
 
     const logout: AuthContextValue["logout"] = async () => {
