@@ -1,11 +1,11 @@
 import React from "react";
 import { View, Text, TouchableOpacity } from "react-native";
 import styled from "styled-components/native";
-import Chat from "../components/Chat";
-import Colors from "../constants/Colors";
-import useCurrentUser from "../hooks/useCurrentUser";
-import useRoom from "../hooks/useRoom";
-import { ChatRoomScreenProps } from "../types/navigation";
+import Chat from "../../components/Chat";
+import Colors from "../../constants/Colors";
+import useCurrentUser from "../../hooks/useCurrentUser";
+import useRoom from "../../hooks/useRoom";
+import { ChatRoomScreenProps } from "../../types/navigation";
 
 
 interface Props extends ChatRoomScreenProps {};

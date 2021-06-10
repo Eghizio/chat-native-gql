@@ -12,7 +12,7 @@ interface Props {
 };
 
 const RoomsList = ({ rooms }: Props) => {
-    const navigation = useNavigation();
+    const navigation = useNavigation(); //could pass typed nav from Rooms Screen
 
     const navigateToChatRoom = (roomId: UserRoom["id"]) => {
         navigation.navigate("ChatRoom", { roomId });

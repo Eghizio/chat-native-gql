@@ -1,13 +1,20 @@
 import React from "react";
 import { NavigationContainer} from "@react-navigation/native";
 import MainStackNavigator from "./MainStackNavigator";
+import AuthStackNavigator from "./AuthStackNavigator";
+import { useAuth } from "../context/AuthProvider";
 
 const Navigation = () => {
-  return (
-    <NavigationContainer>
-      <MainStackNavigator/>
-    </NavigationContainer>
-  );
+	const { token  } = useAuth();
+
+	return (
+		<NavigationContainer>
+			{token
+			? <MainStackNavigator/>
+			: <AuthStackNavigator/>
+			}
+		</NavigationContainer>
+	);
 };
 
 export default Navigation;

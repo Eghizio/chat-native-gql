@@ -8,6 +8,7 @@ import Navigation from './navigation';
 
 import { ApolloProvider } from '@apollo/client';
 import { client } from './graphql';
+import AuthProvider from './context/AuthProvider';
 
 export default function App() {
   const isLoadingComplete = useCachedResources();
@@ -17,10 +18,12 @@ export default function App() {
   } else {
     return (
       <ApolloProvider client={client}>
-        <SafeAreaProvider>
-          <Navigation/>
-          <StatusBar />
-        </SafeAreaProvider>
+        <AuthProvider>
+          <SafeAreaProvider>
+            <Navigation/>
+            <StatusBar />
+          </SafeAreaProvider>
+        </AuthProvider>
       </ApolloProvider>
     );
   }

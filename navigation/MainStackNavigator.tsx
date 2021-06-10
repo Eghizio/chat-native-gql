@@ -1,7 +1,7 @@
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
-import RoomsScreen from "../screens/RoomsScreen";
-import ChatRoomScreen from "../screens/ChatRoomScreen";
+import RoomsScreen from "../screens/main/RoomsScreen";
+import ChatRoomScreen from "../screens/main/ChatRoomScreen";
 import { MainStackParamList } from "../types/navigation";
 
 const MainStack = createStackNavigator<MainStackParamList>();
