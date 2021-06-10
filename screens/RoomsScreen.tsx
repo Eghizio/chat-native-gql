@@ -1,6 +1,8 @@
 import React from "react";
 import { View, Text, TouchableOpacity } from "react-native";
+import styled from "styled-components/native";
 import RoomsList from "../components/RoomsList";
+import Colors from "../constants/Colors";
 import useCurrentUser from "../hooks/useCurrentUser";
 import useUsersRooms from "../hooks/useUsersRooms";
 import { RoomsScreenProps } from "../types/navigation";
@@ -14,10 +16,16 @@ const RoomsScreen = ({ navigation }: Props) => {
     const { data: userRoomsData } = useUsersRooms();
 
     return (
-        <View style={{flex: 1}}>
+        <Screen>
             <RoomsList rooms={userRoomsData?.usersRooms.rooms}/>
-        </View>
+        </Screen>
     );
 };
+
+const Screen = styled.View`
+    flex: 1;
+    flex-direction: column;
+    background-color: ${Colors.BLUE.TINT_2};
+`;
 
 export default RoomsScreen;

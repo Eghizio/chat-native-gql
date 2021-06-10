@@ -20,12 +20,12 @@ const RoomCard = ({ room }: Props) => {
                 <View></View>
                 <View style={styles.textContainer}>
                     <Text style={styles.roomName} numberOfLines={1}>
-                        {/* {limitText(room.name, 32)} */}
-                        {room.name}
+                        {limitText(room.name, 32)}
+                        {/* {room.name} */}
                     </Text>
                     <Text style={styles.lastMessage} numberOfLines={1}>
-                        {/* {roomData && limitText([...roomData.room.messages].pop()?.body, 32)} */}
-                        {roomData && [...roomData.room.messages].pop()?.body}
+                        {roomData && limitText([...roomData.room.messages].pop()?.body, 32)}
+                        {/* {roomData && [...roomData.room.messages].pop()?.body} */}
                     </Text>
                 </View>
             </View>

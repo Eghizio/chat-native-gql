@@ -10,7 +10,8 @@ type Data = {
 const useRoom = (roomId: Room["id"]) => useQuery<Data>(GET_ROOM_BY_ID, {
     variables: {
         id: roomId
-    }
+    },
+    pollInterval: 1000,
 });
 
 export default useRoom;

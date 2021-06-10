@@ -1,50 +1,36 @@
-import React from "react";
-import { View, Text, TouchableOpacity, Image, StyleSheet } from "react-native";
-import Colors from "../constants/Colors";
-import { Room } from "../types/api";
+import { useMutation } from "@apollo/client";
+import React, { useState, useCallback } from "react";
+import { GiftedChat, IMessage } from "react-native-gifted-chat";
+import { SEND_MESSAGE, SET_TYPING_USER } from "../graphql/mutations";
+import { Room, User } from "../types/api";
+import { mapMessageToGifted, mapUserToGifted } from "../utils/mappings";
 
 
 interface Props {
     room: Room;
+    user: User | undefined;
 };
 
-const Chat = ({ room }: Props) => {
+const Chat = ({ room, user }: Props) => {
+    const [messages, setMessages] = useState(room.messages.map(mapMessageToGifted));
+    const [sendMessage] = useMutation(SEND_MESSAGE);
+    // const [setTyping] = useMutation(SET_TYPING_USER);
+
+    const handleSendMessage = useCallback((messages: IMessage[] = []) => {
+        messages.forEach(msg => {
+            sendMessage({ variables: { body: msg.text, roomId: room.id } });
+        });
+        
+        setMessages(previousMessages => GiftedChat.append(previousMessages, messages));
+    }, []);
+
     return (
-        <View style={styles.messages}>
-            {room && room.messages.map(msg =>
-                <View key={msg.id} style={styles.message}>
-                    <Image style={styles.avatar} source={{ uri: msg.user.profilePic }}/>
-                    <Text style={styles.messageBody}>{msg.body}</Text>
-                </View>
-            )}
-        </View>
+        <GiftedChat
+            messages={messages}
+            user={user ? mapUserToGifted(user) : { _id: "42" }}
+            onSend={msgs => handleSendMessage(msgs)}
+        />
     );
 };
-
-const styles = StyleSheet.create({
-    messages: {
-        backgroundColor: Colors.BLUE.TINT_2,
-        paddingVertical: 100, // temp
-    },
-    message: {
-        backgroundColor: Colors.WHITE,
-        flexDirection: "row",
-        alignItems: "center",
-        padding: 12,
-        borderRadius: 12,
-        // depends if its sent/received = bottomRight/bottomLeft
-        // borderBottomRightRadius: 0,
-        borderBottomLeftRadius: 0,
-        marginVertical: 15, // temp
-    },
-    avatar: {
-        width: 24,
-        height: 24,
-        borderRadius: 50,
-    },
-    messageBody: {
-        padding: 12,
-    },
-});
 
 export default Chat;

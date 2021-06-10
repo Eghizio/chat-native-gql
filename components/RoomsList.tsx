@@ -1,5 +1,6 @@
 import React from "react";
-import { View, Text, TouchableOpacity, Image, StyleSheet } from "react-native";
+import { View, Text, TouchableOpacity } from "react-native";
+import styled from "styled-components/native";
 import { useNavigation } from "@react-navigation/native";
 import Colors from "../constants/Colors";
 import { UserRoom } from "../types/api";
@@ -19,21 +20,18 @@ const RoomsList = ({ rooms }: Props) => {
 
     if(rooms === undefined || rooms.length === 0) return <View><Text>No rooms found.</Text></View>;
     return (
-        <View style={styles.roomsList}>
+        <List>
             {rooms.map(room =>
                 <TouchableOpacity key={room.id} onPress={() => navigateToChatRoom(room.id)}>
                     <RoomCard room={room}/>
                 </TouchableOpacity>
             )}
-        </View>
+        </List>
     );
 };
 
-const styles = StyleSheet.create({
-    roomsList: {
-        backgroundColor: Colors.BLUE.TINT_2,
-        paddingVertical: 100, // temp
-    },
-});
+const List = styled.View`
+    background-color: ${Colors.BLUE.TINT_2}; //it should be in the room bg
+`;
 
 export default RoomsList;
