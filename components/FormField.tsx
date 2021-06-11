@@ -1,6 +1,9 @@
 import React, { useState } from "react";
+import { TouchableOpacity } from "react-native";
 import styled from "styled-components/native";
 import Colors from "../constants/Colors";
+import Vision from "./Icons/Vision";
+
 
 type Validation = {
     message: string;
@@ -30,13 +33,19 @@ const FormField = ({ label, value, onChangeText, secureTextEntry, validation }: 
     return (
         <Field>
             <Label>{label}</Label>
-            <Input
-                value={value}
-                onChangeText={onChangeText}
-                secureTextEntry={passwordVisible}
-                onBlur={() => setIsTouched(true)}
-            />
-            {/* toggle pwd visibility */}
+            <InputRow>
+                <Input
+                    value={value}
+                    onChangeText={onChangeText}
+                    secureTextEntry={passwordVisible}
+                    onBlur={() => setIsTouched(true)}
+                />
+                {secureTextEntry &&
+                    <TouchableOpacity onPress={togglePwdVisibility}>
+                        <VisibilityIcon low={!passwordVisible}/>
+                    </TouchableOpacity>
+                }
+            </InputRow>
             <ValidationMessage>
                 {validationMessage}
             </ValidationMessage>
@@ -57,8 +66,16 @@ const Label = styled.Text`
 
 const Input = styled.TextInput`
     background-color: ${Colors.WHITE};
-    padding: 12px 16px;
     border-radius: 10px;
+    padding: 12px 16px;
+`;
+
+const InputRow = styled.View``;
+
+const VisibilityIcon = styled(Vision)`
+    position: absolute;
+    right: 8px;
+    bottom: 12px;
 `;
 
 const ValidationMessage = styled.Text`
@@ -67,7 +84,5 @@ const ValidationMessage = styled.Text`
     font-size: 10px;
     color: ${Colors.ERROR};
 `;
-
-// todo: input validation error message
 
 export default FormField;
