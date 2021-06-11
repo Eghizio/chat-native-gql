@@ -1,67 +1,89 @@
-import React from "react";
-import { View } from "react-native";
+import React, { useState } from "react";
+import { Linking, View } from "react-native";
 import styled from "styled-components/native";
+import Heading from "../../components/Heading";
+import FormField from "../../components/FormField";
+import Link from "../../components/Link";
+import Button from "../../components/Button";
 import Colors from "../../constants/Colors";
 import { useAuth } from "../../context/AuthProvider";
 import { RegisterScreenProps } from "../../types/navigation";
 
-
+// why is that button style messed up?
 interface Props extends RegisterScreenProps {};
 
 const RegisterScreen = ({ navigation }: Props) => {
     const { register } = useAuth();
+    // Form state
+    const [email, setEmail] = useState("");
+    const [firstName, setFirstName] = useState("");
+    const [lastName, setLastName] = useState("");
+    const [password, setPassword] = useState("");
+    const [passwordConfirmation, setPasswordConfirmation] = useState("");
+
 
     const handleRegister = async () => {
+        // const rnd = Math.floor(Math.random()*3000).toString();
+        // const mockedInputs = {
+        //     email: `test${rnd}@mail.com`,
+        //     firstName: "Tony",
+        //     lastName: "Stark",
+        //     password: "ILoveYou3000",
+        //     passwordConfirmation: "ILoveYou3000"
+        // };
+
         // validate
-        const rnd = Math.floor(Math.random()*3000).toString();
-        const user = await register({
-            email: `test${rnd}@mail.com`,
-            firstName: "Tony",
-            lastName: "Stark",
-            password: "ILoveYou3000",
-            passwordConfirmation: "ILoveYou3000"
-        });
+        //is password matching passwordConfirmation, valid email etc.
+        if(password !== passwordConfirmation) return console.log("Passwords do not match");
+
+        const user = await register({ email, firstName, lastName, password, passwordConfirmation });
+
         if(user === null) return console.log("Failed to register!"); //some toast or smthin
-        console.log(user)
         navigation.navigate("Login");
     };
+
+    const openTOS = () => { Linking.openURL("https://www.youtube.com/watch?v=dQw4w9WgXcQ"); };
+    const openPrivacyPolicy = () => { Linking.openURL("https://thewidlarzgroup.com/privacy-policy"); };
 
     return (
         <Screen>
             <Heading>Create account</Heading>
             <Form>
                 <View>
-                    <FieldSet>
-                        <Label>e-mail address</Label>
-                        <Input/>
-                    </FieldSet>
-                    <FieldSet>
-                        <Label>first name</Label>
-                        <Input/>
-                    </FieldSet>
-                    <FieldSet>
-                        <Label>last name</Label>
-                        <Input/>
-                    </FieldSet>
-                    <FieldSet>
-                        <Label>password</Label>
-                        <Input/>
-                    </FieldSet>
-                    <FieldSet>
-                        <Label>password confirmation</Label>
-                        <Input/>
-                    </FieldSet>
+                    <FormField
+                        label="e-mail address"
+                        value={email}
+                        onChangeText={setEmail}
+                    />
+                    <FormField
+                        label="first name"
+                        value={firstName}
+                        onChangeText={setFirstName}
+                    />
+                    <FormField
+                        label="last name"
+                        value={lastName}
+                        onChangeText={setLastName}
+                    />
+                    <FormField
+                        label="password"
+                        value={password}
+                        onChangeText={setPassword}
+                        secureTextEntry
+                    />
+                    <FormField
+                        label="password confirmation"
+                        value={passwordConfirmation}
+                        onChangeText={setPasswordConfirmation}
+                        secureTextEntry
+                    />
                 </View>
-
                 <View>
-                    <SubmitButton onPress={() => handleRegister()}>
-                        <SubmitButonText>Sign up</SubmitButonText>
-                    </SubmitButton>
-
+                    <Button label="Sign up" onPress={handleRegister}/>
                     <FormFooter>
                         <FormFooterText>
                             By clicking sign up button you agree with
-                            <Link><LinkText>the terms and conditions</LinkText></Link> and <Link><LinkText>the privacy policy.</LinkText></Link>
+                            <Link label="the terms and conditions" onPress={openTOS}/> and <Link label="the privacy policy." onPress={openPrivacyPolicy}/>
                         </FormFooterText>
                     </FormFooter>
                 </View>
@@ -76,53 +98,19 @@ const Screen = styled.View`
     background-color: ${Colors.BLUE.TINT_1}; //todo
 `;
 
-const Heading = styled.Text`
-    font-weight: 700;
-    font-size: 36px;
-    color: ${Colors.PLUM.NORMAL};
-`;
-
 const Form = styled.View`
     flex: 1;
     align-items: center;
     justify-content: space-between;
     padding: 36px 0;
 `;
-// or maybe shall i name it Row?
-const FieldSet = styled.View``;
-const Label = styled.Text`
-    font-weight: 500;
-    font-size: 16px;
-    color: ${Colors.BLUE.TINT_2};
-`;
-const Input = styled.TextInput`
-    background-color: ${Colors.WHITE};
-    padding: 12px 16px;
-    border-radius: 10px;
-`;
 
-const SubmitButton = styled.TouchableOpacity`
-    background-color: ${Colors.PLUM.NORMAL};
-    padding: 17px 88px;
-    border-radius: 10px;
-`;
-const SubmitButonText = styled.Text`
-    color: ${Colors.WHITE};
-`;
-
-//Side note
+//Side note/notice
 const FormFooter = styled.View`
     padding-top: 15px;
 `;
 const FormFooterText = styled.Text`
     text-align: center;
 `;
-const Link = styled.TouchableOpacity``;
-const LinkText = styled.Text`
-    color: ${Colors.BLUE.NORMAL};
-    text-decoration: underline;
-    text-decoration-color: ${Colors.BLUE.NORMAL};
-`;
-
 
 export default RegisterScreen;
