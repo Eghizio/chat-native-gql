@@ -1,9 +1,13 @@
 import { useMutation } from "@apollo/client";
 import React, { useState, useCallback } from "react";
 import { GiftedChat, IMessage } from "react-native-gifted-chat";
-import { SEND_MESSAGE, SET_TYPING_USER } from "../graphql/mutations";
-import { Room, User } from "../types/api";
-import { mapMessageToGifted, mapUserToGifted } from "../utils/mappings";
+import { SEND_MESSAGE, SET_TYPING_USER } from "../../graphql/mutations";
+import { Room, User } from "../../types/api";
+import { mapMessageToGifted, mapUserToGifted } from "../../utils/mappings";
+import ChatMessage from "./ChatMessage";
+import ChatFooter from "./ChatFooter";
+import ChatInput from "./ChatInput";
+import ChatSendButton from "./ChatSendButton";
 
 
 interface Props {
@@ -22,13 +26,25 @@ const Chat = ({ room, user }: Props) => {
         });
         
         setMessages(previousMessages => GiftedChat.append(previousMessages, messages));
-    }, []);
+    }, [sendMessage, room]);
 
     return (
         <GiftedChat
             messages={messages}
             user={user ? mapUserToGifted(user) : { _id: "42" }}
             onSend={msgs => handleSendMessage(msgs)}
+            renderBubble={props => <ChatMessage {...props}/>}
+            // renderFooter
+            // renderChatFooter={() => <ChatFooter/>}
+            // renderComposer={props =>
+            //     <ChatFooter>
+            //         <ChatInput {...props}/>
+            //         <ChatSendButton {...props}/>
+            //     </ChatFooter>
+            // }
+
+            renderInputToolbar={props => <ChatInput {...props}/>}
+            renderSend={props => <ChatSendButton {...props}/>}
         />
     );
 };
