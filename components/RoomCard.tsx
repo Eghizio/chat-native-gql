@@ -6,6 +6,7 @@ import useRoom from "../hooks/useRoom";
 import { UserRoom } from "../types/api";
 import { limitText } from "../utils/limitText";
 
+// fix length, make last message time, if read (last visited)
 interface Props {
     room: UserRoom;
 };
@@ -33,6 +34,7 @@ const RoomCard = ({ room }: Props) => {
     );
 };
 
+// gotta change to styled-comps, todo: make chat UI
 const styles = StyleSheet.create({
     roomCard: {
         width: Layout.window.width,

@@ -8,6 +8,8 @@ import Button from "../../components/Button";
 import Colors from "../../constants/Colors";
 import { useAuth } from "../../context/AuthProvider";
 import { RegisterScreenProps } from "../../types/navigation";
+// import { mockRegisterPayload } from "../../utils/mocks";
+import { isEmail, passwordsMatch } from "../../utils/validators";
 
 // why is that button style messed up?
 interface Props extends RegisterScreenProps {};
@@ -23,19 +25,11 @@ const RegisterScreen = ({ navigation }: Props) => {
 
 
     const handleRegister = async () => {
-        // const rnd = Math.floor(Math.random()*3000).toString();
-        // const mockedInputs = {
-        //     email: `test${rnd}@mail.com`,
-        //     firstName: "Tony",
-        //     lastName: "Stark",
-        //     password: "ILoveYou3000",
-        //     passwordConfirmation: "ILoveYou3000"
-        // };
-
         // validate
         //is password matching passwordConfirmation, valid email etc.
         if(password !== passwordConfirmation) return console.log("Passwords do not match");
 
+        // const user = await register(mockRegisterPayload());
         const user = await register({ email, firstName, lastName, password, passwordConfirmation });
 
         if(user === null) return console.log("Failed to register!"); //some toast or smthin
@@ -47,47 +41,55 @@ const RegisterScreen = ({ navigation }: Props) => {
 
     return (
         <Screen>
-            <Heading>Create account</Heading>
-            <Form>
-                <View>
-                    <FormField
-                        label="e-mail address"
-                        value={email}
-                        onChangeText={setEmail}
-                    />
-                    <FormField
-                        label="first name"
-                        value={firstName}
-                        onChangeText={setFirstName}
-                    />
-                    <FormField
-                        label="last name"
-                        value={lastName}
-                        onChangeText={setLastName}
-                    />
-                    <FormField
-                        label="password"
-                        value={password}
-                        onChangeText={setPassword}
-                        secureTextEntry
-                    />
-                    <FormField
-                        label="password confirmation"
-                        value={passwordConfirmation}
-                        onChangeText={setPasswordConfirmation}
-                        secureTextEntry
-                    />
-                </View>
-                <View>
-                    <Button label="Sign up" onPress={handleRegister}/>
-                    <FormFooter>
-                        <FormFooterText>
-                            By clicking sign up button you agree with
-                            <Link label="the terms and conditions" onPress={openTOS}/> and <Link label="the privacy policy." onPress={openPrivacyPolicy}/>
-                        </FormFooterText>
-                    </FormFooter>
-                </View>
-            </Form>
+            <FormHeader>
+                <Heading>Create account</Heading>
+            </FormHeader>
+            <Fields>
+                <FormField
+                    label="e-mail address"
+                    value={email}
+                    onChangeText={setEmail}
+                    validation={{
+                        validator: isEmail(email),
+                        message: "Please enter a valid email."
+                    }}
+                />
+                <FormField
+                    label="first name"
+                    value={firstName}
+                    onChangeText={setFirstName}
+                />
+                <FormField
+                    label="last name"
+                    value={lastName}
+                    onChangeText={setLastName}
+                />
+                <FormField
+                    label="password"
+                    value={password}
+                    onChangeText={setPassword}
+                    secureTextEntry
+                />
+                <FormField
+                    label="password confirmation"
+                    value={passwordConfirmation}
+                    onChangeText={setPasswordConfirmation}
+                    secureTextEntry
+                    validation={{
+                        validator: passwordsMatch(password, passwordConfirmation),
+                        message: "Passwords do not match."
+                    }}
+                />
+            </Fields>
+            <FormFooter>
+                <Button label="Sign up" onPress={handleRegister}/>
+                <BottomNotice>
+                    <NoticeText>
+                        By clicking sign up button you agree with
+                        <Link label="the terms and conditions" onPress={openTOS}/> and <Link label="the privacy policy." onPress={openPrivacyPolicy}/>
+                    </NoticeText>
+                </BottomNotice>
+            </FormFooter>
         </Screen>
     );
 };
@@ -95,21 +97,30 @@ const RegisterScreen = ({ navigation }: Props) => {
 const Screen = styled.View`
     flex: 1;
     flex-direction: column;
-    background-color: ${Colors.BLUE.TINT_1}; //todo
+    background-color: ${Colors.BLUE.TINT_1};
+    padding: 12px;
 `;
 
-const Form = styled.View`
+const FormHeader = styled.View`
+    padding-top: 24px;
+`;
+
+const Fields = styled.View`
     flex: 1;
     align-items: center;
-    justify-content: space-between;
-    padding: 36px 0;
+    justify-content: center;
+    padding-bottom: 12px;
+`;
+
+const FormFooter = styled.View`
+    align-items: center;
 `;
 
 //Side note/notice
-const FormFooter = styled.View`
-    padding-top: 15px;
+const BottomNotice = styled.View`
+    /* padding-top: 15px; */
 `;
-const FormFooterText = styled.Text`
+const NoticeText = styled.Text`
     text-align: center;
 `;
 

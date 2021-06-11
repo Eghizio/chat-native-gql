@@ -31,6 +31,7 @@ const Wrapper = styled.TouchableOpacity<Pick<Props, "size" | "variant">>`
         : "17px 88px"
     };
     border-radius: 10px;
+    text-align: center;
 `;
 
 const Label = styled.Text`
