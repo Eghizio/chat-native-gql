@@ -11,6 +11,9 @@ interface Props {
     room: UserRoom;
 };
 
+// fixes styled-components unit Warning, if units provided causes expo Error
+const circle = { borderRadius: 50 };
+
 const RoomCard = ({ room }: Props) => {
     const { data: roomData } = useRoom(room.id); // for last message
 
@@ -26,13 +29,13 @@ const RoomCard = ({ room }: Props) => {
     return (
         <Card isActive={isActive}>
             {room.roomPic
-            ? <RoomImage source={{ uri: room.roomPic }}/>
-            : <RoomImagePlaceholder/>
+            ? <RoomImage source={{ uri: room.roomPic }} style={circle}/>
+            : <RoomImagePlaceholder style={circle}/>
             }
             <Wrapper>
                 <Activity>
                     {isActive
-                    ? <ActiveIndicator/>
+                    ? <ActiveIndicator style={circle}/>
                     : <LastMessageTime>24 m ago</LastMessageTime>
                     }
                 </Activity>
@@ -82,14 +85,14 @@ const Card = styled.View<ActiveProps>`
 const RoomImage = styled.Image`
     width: 64px;
     height: 64px;
-    border-radius: 50;
+    /* border-radius: 50; */
     background-color: ${Colors.GREY.TINT_2};
 `;
 // image uri shouldnt be an empty string
 const RoomImagePlaceholder = styled.View`
     width: 64px;
     height: 64px;
-    border-radius: 50;
+    /* border-radius: 50; */
     background-color: ${Colors.GREY.TINT_2};
 `;
 
@@ -103,7 +106,7 @@ const Activity = styled.View`
 const ActiveIndicator = styled.View`
     width: 12px;
     height: 12px;
-    border-radius: 50;
+    /* border-radius: 50; */
     background-color: ${Colors.ACTIVE};
 `; // could be gray if inactive for longer period of time
 const LastMessageTime = styled.Text`
