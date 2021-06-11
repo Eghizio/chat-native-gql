@@ -21,7 +21,7 @@ export default function App() {
         <AuthProvider>
           <SafeAreaProvider>
             <Navigation/>
-            <StatusBar />
+            <StatusBar translucent backgroundColor="transparent"/>
           </SafeAreaProvider>
         </AuthProvider>
       </ApolloProvider>

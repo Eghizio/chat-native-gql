@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { View } from "react-native";
+import { Alert, View } from "react-native";
 import styled from "styled-components/native";
+import ScreenLayout from "../../components/ScreenLayout";
 import Heading from "../../components/Heading";
 import FormField from "../../components/FormField";
 import Button from "../../components/Button";
@@ -9,8 +10,9 @@ import Colors from "../../constants/Colors";
 import { useAuth } from "../../context/AuthProvider";
 import { LoginScreenProps } from "../../types/navigation";
 import { mockLoginPayload } from "../../utils/mocks";
+import { isEmail } from "../../utils/validators";
 
-// gotta fix spacing n layout
+
 interface Props extends LoginScreenProps {};
 
 const LoginScreen = ({ navigation }: Props) => {
@@ -20,13 +22,27 @@ const LoginScreen = ({ navigation }: Props) => {
     
 
     const handleLogin = async () => {
-        // sample validate (could validate onchange with FormField component)
-        if(!email || !password) return console.log("Email or password missing.");
-
+        // could be a Toast
+        if(!email || !password){
+            console.log("Please fill all of the fields.");
+            Alert.alert("Oopsie", "Please fill all of the fields.");
+            return;
+        }
+        if(!isEmail(email)){
+            console.log("Please enter a valid email.");
+            Alert.alert("Oopsie", "Please enter a valid email.");
+            return;
+        }
+        
         const session = await login(mockLoginPayload());
         // const session = await login({ email, password });
 
-        if(session === null) return console.log("Failed to log in!"); //some toast or smthin
+        if(session === null){
+            // could be a Toast
+            console.log("Invalid credentials.");
+            Alert.alert("Oopsie", "Invalid credentials.");
+            return;
+        }
         // AuthStack takes care of navigating to MainStack
     };
 
@@ -35,7 +51,7 @@ const LoginScreen = ({ navigation }: Props) => {
     };
 
     return (
-        <Screen>
+        <ScreenLayout>
             <FormHeader>
                 <TitleHeading>Welcome back</TitleHeading>
                 <Heading
@@ -48,6 +64,10 @@ const LoginScreen = ({ navigation }: Props) => {
                     label="e-mail address"
                     value={email}
                     onChangeText={setEmail}
+                    validation={{
+                        validator: isEmail(email),
+                        message: "Please enter a valid email."
+                    }}
                 />
                 <FormField
                     label="password"
@@ -64,21 +84,15 @@ const LoginScreen = ({ navigation }: Props) => {
                     </NoticeText>
                 </BottomNotice>
             </FormFooter>
-        </Screen>
+        </ScreenLayout>
     );
 };
 
-const Screen = styled.View`
-    flex: 1;
-    flex-direction: column;
-    background-color: ${Colors.BLUE.TINT_1};
-    padding: 16px;
+const FormHeader = styled.View`
+    padding-top: 24px;
 `;
 
-const FormHeader = styled.View``;
-
 const TitleHeading = styled(Heading)`
-    padding-top: 24px;
     padding-bottom: 18px;
 `;
 
@@ -86,6 +100,7 @@ const Fields = styled.View`
     flex: 1;
     align-items: center;
     justify-content: center;
+    padding: 0 24px;
 `;
 
 const FormFooter = styled.View`

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { Linking, View } from "react-native";
+import { Alert, Linking } from "react-native";
 import styled from "styled-components/native";
+import ScreenLayout from "../../components/ScreenLayout";
 import Heading from "../../components/Heading";
 import FormField from "../../components/FormField";
 import Link from "../../components/Link";
@@ -25,14 +26,33 @@ const RegisterScreen = ({ navigation }: Props) => {
 
 
     const handleRegister = async () => {
-        // validate
-        //is password matching passwordConfirmation, valid email etc.
-        if(password !== passwordConfirmation) return console.log("Passwords do not match");
+        // could be handled with better Inputs logic and Toast components
+        // could be extracted to platform specific function
+        if(!(email && firstName && lastName && password && passwordConfirmation)){
+            console.log("Please fill all of the fields.");
+            Alert.alert("Oopsie", "Please fill all of the fields.");
+            return;
+        }
+        if(!isEmail(email)){
+            console.log("Please enter a valid email.");
+            Alert.alert("Oopsie", "Please enter a valid email.");
+            return;
+        }
+        if(!passwordsMatch(password, passwordConfirmation)){
+            console.log("Passwords do not match.");
+            Alert.alert("Oopsie", "Passwords do not match.");
+            return;
+        }
 
         // const user = await register(mockRegisterPayload());
         const user = await register({ email, firstName, lastName, password, passwordConfirmation });
 
-        if(user === null) return console.log("Failed to register!"); //some toast or smthin
+        if(user === null){
+            //some toast or smthin
+            console.log("Failed to register."); 
+            Alert.alert("Oopsie", "Failed to register.")
+            return;
+        }
         navigation.navigate("Login");
     };
 
@@ -40,7 +60,7 @@ const RegisterScreen = ({ navigation }: Props) => {
     const openPrivacyPolicy = () => { Linking.openURL("https://thewidlarzgroup.com/privacy-policy"); };
 
     return (
-        <Screen>
+        <ScreenLayout>
             <FormHeader>
                 <Heading>Create account</Heading>
             </FormHeader>
@@ -90,16 +110,9 @@ const RegisterScreen = ({ navigation }: Props) => {
                     </NoticeText>
                 </BottomNotice>
             </FormFooter>
-        </Screen>
+        </ScreenLayout>
     );
 };
-
-const Screen = styled.View`
-    flex: 1;
-    flex-direction: column;
-    background-color: ${Colors.BLUE.TINT_1};
-    padding: 12px;
-`;
 
 const FormHeader = styled.View`
     padding-top: 24px;
@@ -109,7 +122,7 @@ const Fields = styled.View`
     flex: 1;
     align-items: center;
     justify-content: center;
-    padding-bottom: 12px;
+    padding: 0 24px;
 `;
 
 const FormFooter = styled.View`
@@ -118,7 +131,7 @@ const FormFooter = styled.View`
 
 //Side note/notice
 const BottomNotice = styled.View`
-    /* padding-top: 15px; */
+    padding-top: 15px;
 `;
 const NoticeText = styled.Text`
     text-align: center;

@@ -19,11 +19,9 @@ const FormField = ({ label, value, onChangeText, secureTextEntry, validation }: 
     const [passwordVisible, setPasswordVisible] = useState(!!secureTextEntry);
     const [isTouched, setIsTouched] = useState(false);
 
-    // should start displaying onblur, done
-    // to offset or not to offset, that is the question
-    const validationMessage = isTouched && validation
-        ? (validation.validator ? " " : validation.message)
-        : " ";
+    const validationMessage = isTouched
+        && validation
+        && (validation.validator ? "" : validation.message);
 
     const togglePwdVisibility = () => {
         setPasswordVisible(prev => !prev);
@@ -39,16 +37,17 @@ const FormField = ({ label, value, onChangeText, secureTextEntry, validation }: 
                 onBlur={() => setIsTouched(true)}
             />
             {/* toggle pwd visibility */}
-            {validation && 
-                <ValidationMessage>
-                    {validationMessage}
-                </ValidationMessage>
-            }
+            <ValidationMessage>
+                {validationMessage}
+            </ValidationMessage>
         </Field>
     );
 };
 
-const Field = styled.KeyboardAvoidingView``;
+const Field = styled.KeyboardAvoidingView`
+    align-self: stretch;
+    flex-shrink: 1;
+`;
 
 const Label = styled.Text`
     font-weight: 500;
@@ -63,7 +62,7 @@ const Input = styled.TextInput`
 `;
 
 const ValidationMessage = styled.Text`
-    text-align: end;
+    align-self: flex-end;
     padding-right: 4px;
     font-size: 10px;
     color: ${Colors.ERROR};
