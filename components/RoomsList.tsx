@@ -1,8 +1,7 @@
 import React from "react";
-import { View, Text, TouchableOpacity, ListRenderItem, ListRenderItemInfo, FlatList } from "react-native";
+import { View, Text, TouchableOpacity, FlatList } from "react-native";
 import styled from "styled-components/native";
 import { useNavigation } from "@react-navigation/native";
-import Colors from "../constants/Colors";
 import { UserRoom } from "../types/api";
 import RoomCard from "./RoomCard";
 
@@ -18,8 +17,6 @@ const RoomsList = ({ rooms }: Props) => {
         navigation.navigate("ChatRoom", { roomId });
     };
 
-    //  doesn't work with ListRenderItem<UserRoom> fn
-
     if(rooms === undefined || rooms.length === 0) return <View><Text style={{textAlign: "center"}}>No rooms found.</Text></View>;
     return (
         <Wrapper>
@@ -33,7 +30,7 @@ const RoomsList = ({ rooms }: Props) => {
                         <RoomCard room={(room as UserRoom)}/>
                     </TouchableOpacity>
                 }
-                contentContainerStyle={{flex: 1, alignItems: "center", }}
+                contentContainerStyle={{flex: 1, alignItems: "center"}}
                 ItemSeparatorComponent={() => <Separator/>}
             />
         </Wrapper>

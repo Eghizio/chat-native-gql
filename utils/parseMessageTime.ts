@@ -7,7 +7,8 @@ const SEC_IN_MS = 1000;
 
 export const parseMessageTime = (msgTime: Date) => {
     const timeDiff = Date.now() - msgTime.getTime();
-
+    
+    if(isNaN(timeDiff)) return ""; // fix for Expo GiftedChat date bug
     if(timeDiff < 0) return "from the future"; // wink wink time travelers
 
     if(timeDiff >= DAY_IN_MS) return "over a day ago";

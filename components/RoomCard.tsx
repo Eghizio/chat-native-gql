@@ -90,7 +90,10 @@ const Wrapper = styled.View`
 `;
 
 const Activity = styled.View`
-    align-items: flex-end;
+    /* align-items: flex-end; */
+    position: absolute;
+    top: -8px; /*padding is 15px so prolly wont be outside*/
+    right: 0;
 `;
 const ActiveIndicator = styled.View`
     width: 12px;
