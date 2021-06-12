@@ -9,11 +9,8 @@ const ChatSendButton = (props: SendProps<IMessage>) => {
         <Send
             {...props}
             containerStyle={{
-                height: 60,
-                width: 60,
-                justifyContent: "center",
-                alignItems: "center",
-                backgroundColor: "black"
+                // justifyContent: "center",
+                // alignItems: "center",
             }}
         >
             <SendIcon/>

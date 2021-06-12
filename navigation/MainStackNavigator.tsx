@@ -28,7 +28,7 @@ const MainStackNavigator = () => {
                     fontSize: 36,
                 },
                 headerLeft: () => null, //im developin on web so i need a way to nav back XD
-                headerRight: () => <HeaderRight screenName={route.name}/>,
+                headerRight: () => <HeaderRight screenName={route.name}/>, // todo: ChatRoom header left
                 // headerTintColor
             })}
         >

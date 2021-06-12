@@ -14,7 +14,7 @@ const ChatInput = (props: InputToolbarProps) => {
                 width: 200,
                 backgroundColor: Colors.WHITE,
             }}
-            renderSend={props => <ChatSendButton {...props}/>}
+            // renderSend={props => <ChatSendButton {...props}/>}
         />
     );
 };

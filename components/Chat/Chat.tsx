@@ -3,7 +3,7 @@ import React, { useState, useCallback } from "react";
 import { GiftedChat, IMessage } from "react-native-gifted-chat";
 import { SEND_MESSAGE, SET_TYPING_USER } from "../../graphql/mutations";
 import { Room, User } from "../../types/api";
-import { mapMessageToGifted, mapUserToGifted, sortByMessageDate } from "../../utils/mappings";
+import { mapMessageToGifted, mapUserToGifted } from "../../utils/mappings";
 import ChatMessage from "./ChatMessage";
 import ChatFooter from "./ChatFooter";
 import ChatInput from "./ChatInput";
@@ -30,11 +30,13 @@ const Chat = ({ room, user }: Props) => {
 
     return (
         <GiftedChat
-            messages={sortByMessageDate(messages)}
+            messages={messages}
+            inverted={false}
             user={user ? mapUserToGifted(user) : { _id: "42" }}
             onSend={msgs => handleSendMessage(msgs)}
             renderBubble={props => <ChatMessage {...props}/>}
             renderInputToolbar={props => <ChatInput {...props}/>}
+            alwaysShowSend
             renderSend={props => <ChatSendButton {...props}/>}
             // renderFooter
         />
