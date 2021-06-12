@@ -20,7 +20,7 @@ const Chat = ({ room, user }: Props) => {
     const [messages, setMessages] = useState(room.messages.map(mapMessageToGifted));
     const [sendMessage] = useMutation(SEND_MESSAGE);
     const [isTyping, setIsTyping] = useState(false);
-    // const [setTyping] = useMutation(SET_TYPING_USER);
+    const [setTyping] = useMutation(SET_TYPING_USER);
 
     const handleSendMessage = useCallback((messages: IMessage[] = []) => {
         messages.forEach(msg => {
@@ -29,6 +29,15 @@ const Chat = ({ room, user }: Props) => {
         
         setMessages(previousMessages => GiftedChat.append(previousMessages, messages));
     }, [sendMessage, room]);
+
+    const handleTyping = (text: string) => {
+        if(!text){
+            setIsTyping(false);
+            return;
+        }
+        setIsTyping(true);
+        setTyping({ variables: { roomId: room.id }}); //needs debounce
+    };
 
     return (
         <GiftedChat
@@ -40,7 +49,7 @@ const Chat = ({ room, user }: Props) => {
             renderBubble={props => <ChatMessage {...props}/>}
             
             isTyping={isTyping}
-            onInputTextChanged={text => text && setIsTyping(true)}
+            onInputTextChanged={handleTyping}
             renderFooter={() => isTyping ? <ChatFooter/> : null}
             // renderChatFooter={() => null}
             renderInputToolbar={props => <ChatInput {...props}/>}
