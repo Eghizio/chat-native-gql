@@ -6,7 +6,7 @@ interface Props extends SvgProps {
     low?: boolean;
 };
 
-const Vision = ({ low, ...props }: Props) => {
+const VisionIcon = ({ low, ...props }: Props) => {
     return (
         <View style={{
             justifyContent: "center",
@@ -55,4 +55,4 @@ const Vision = ({ low, ...props }: Props) => {
 };
 
 
-export default Vision;
+export default VisionIcon;

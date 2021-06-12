@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { TouchableOpacity } from "react-native";
 import styled from "styled-components/native";
 import Colors from "../constants/Colors";
-import Vision from "./Icons/Vision";
+import VisionIcon from "./Icons/VisionIcon";
 
 
 type Validation = {
@@ -72,7 +72,7 @@ const Input = styled.TextInput`
 
 const InputRow = styled.View``;
 
-const VisibilityIcon = styled(Vision)`
+const VisibilityIcon = styled(VisionIcon)`
     position: absolute;
     right: 8px;
     bottom: 12px;
