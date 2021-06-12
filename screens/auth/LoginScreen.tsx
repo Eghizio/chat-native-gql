@@ -34,8 +34,8 @@ const LoginScreen = ({ navigation }: Props) => {
             return;
         }
         
-        const session = await login(mockLoginPayload());
-        // const session = await login({ email, password });
+        // const session = await login(mockLoginPayload());
+        const session = await login({ email, password });
 
         if(session === null){
             // could be a Toast
