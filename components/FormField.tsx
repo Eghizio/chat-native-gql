@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { TouchableOpacity } from "react-native";
 import styled from "styled-components/native";
 import Colors from "../constants/Colors";
+import Fonts from "../constants/Fonts";
 import VisionIcon from "./Icons/VisionIcon";
 
 
@@ -62,6 +63,7 @@ const Label = styled.Text`
     font-weight: 500;
     font-size: 16px;
     color: ${Colors.BLUE.TINT_2};
+    font-family: ${Fonts.Poppins_400Regular};
 `;
 
 const Input = styled.TextInput`

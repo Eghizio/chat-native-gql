@@ -2,6 +2,7 @@ import React from "react";
 import { GestureResponderEvent } from "react-native";
 import styled from "styled-components/native";
 import Colors from "../constants/Colors";
+import Fonts from "../constants/Fonts";
 
 
 interface Props {
@@ -36,6 +37,7 @@ const Wrapper = styled.TouchableOpacity<Pick<Props, "size" | "variant">>`
 const Label = styled.Text`
     text-align: center;
     color: ${Colors.WHITE};
+    font-family: ${Fonts.Poppins_600SemiBold};
 `;
 
 export default Button;

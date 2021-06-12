@@ -7,6 +7,7 @@ import { UserRoom } from "../types/api";
 // import { limitText } from "../utils/limitText";
 import ProfileIcon from "./Icons/ProfileIcon";
 import { parseMessageTime } from "../utils/parseMessageTime";
+import Fonts from "../constants/Fonts";
 
 
 // fix length, make last message time, if read (last visited)
@@ -120,6 +121,7 @@ const StyledText = styled.Text<ActiveProps>`
 const RoomName = styled(StyledText)`
     font-weight: 500;
     font-size: 15px;
+    font-family: ${Fonts.Poppins_600SemiBold};
 `;
 const LastMessage = styled(StyledText)`
     font-size: 14px;
