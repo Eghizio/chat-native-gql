@@ -11,7 +11,7 @@ const ChatInput = (props: InputToolbarProps) => {
             containerStyle={{
                 borderRadius: 12,
                 borderBottomRightRadius: 0,
-                width: Layout.window.width-80,
+                // width: Layout.window.width-80,
                 backgroundColor: Colors.WHITE,
             }}
         />

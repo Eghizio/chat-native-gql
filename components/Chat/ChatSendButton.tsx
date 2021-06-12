@@ -8,7 +8,7 @@ const ChatSendButton = (props: SendProps<IMessage>) => {
             {...props}
             containerStyle={{
                 position: "absolute",
-                right: -60,
+                right: 5,
             }}
         >
             <SendIcon/>
