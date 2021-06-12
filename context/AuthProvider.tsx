@@ -5,6 +5,7 @@ import useCurrentUser from "../hooks/useCurrentUser";
 import { LOGIN_USER, REGISTER_USER } from "../graphql/mutations";
 import { AuthContextValue } from "../types/auth";
 import { Session } from "../types/api";
+import Loader from "../components/Loader";
 
 
 const AuthContext = createContext<AuthContextValue | undefined>(undefined);
@@ -35,7 +36,7 @@ const AuthProvider: React.FC = ({ children }) => {
     const [token, setToken] = useState("");
     const [user, setUser] = useState<AuthContextValue["user"]>(null);
     // loading for spinner?
-    const { data: userData } = useCurrentUser();
+    const { data: userData, loading } = useCurrentUser();
     const [registerUser] = useMutation<{registerUser: Session["user"]}>(REGISTER_USER);
     const [loginUser] = useMutation<{loginUser: Session}>(LOGIN_USER);
 
@@ -80,6 +81,7 @@ const AuthProvider: React.FC = ({ children }) => {
 
     const value: AuthContextValue = { token, user, login, logout, register };
 
+    if(loading) return <Loader/>; //SafeAreaProvider?
     return (
         <AuthContext.Provider value={value}>
             {children}

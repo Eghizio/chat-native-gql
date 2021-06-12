@@ -2,6 +2,7 @@ import React from "react";
 import { ActivityIndicator } from "react-native";
 import styled from "styled-components/native";
 import Button from "../../components/Button";
+import Loader from "../../components/Loader";
 import RoomsList from "../../components/RoomsList";
 import ScreenLayout from "../../components/ScreenLayout";
 import Colors from "../../constants/Colors";
@@ -20,7 +21,7 @@ const RoomsScreen = ({}: Props) => {
     return (
         <ScreenLayout lightBackground>
             {loading
-            ? <ActivityIndicator size="large" color={Colors.PLUM.SHADE_1} style={{paddingVertical: 15}}/>
+            ? <Loader />
             : <RoomsList rooms={userRoomsData?.usersRooms.rooms}/>
             }
             <Button label="Logout" onPress={logout} size="small" variant="danger"/>
