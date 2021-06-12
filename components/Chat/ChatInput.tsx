@@ -2,6 +2,7 @@ import React from "react";
 import { View, Text } from "react-native";
 import { InputToolbar, InputToolbarProps } from "react-native-gifted-chat";
 import Colors from "../../constants/Colors";
+import Layout from "../../constants/Layout";
 import ChatSendButton from "./ChatSendButton";
 
 const ChatInput = (props: InputToolbarProps) => {
@@ -11,10 +12,9 @@ const ChatInput = (props: InputToolbarProps) => {
             containerStyle={{
                 borderRadius: 12,
                 borderBottomRightRadius: 0,
-                width: 200,
+                width: Layout.window.width-80,
                 backgroundColor: Colors.WHITE,
             }}
-            // renderSend={props => <ChatSendButton {...props}/>}
         />
     );
 };

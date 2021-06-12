@@ -1,18 +1,12 @@
 import React from "react";
 import styled from "styled-components/native";
-// import {  } from "react-native-gifted-chat";
-import Colors from "../../constants/Colors";
+import { Text } from "react-native";
 
-const ChatFooter: React.FC = ({ children }) => {
-    return (
-        <Wrapper>
-            {children}
-        </Wrapper>
-    );
-};
+const ChatFooter = () => <Footer><Text>User is typing...</Text></Footer>;
 
-const Wrapper = styled.View`
-    background-color: ${Colors.BLUE.TINT_1};
+const Footer = styled.View`
+    align-items: center;
+    padding: 15px 0;
 `;
 
 export default ChatFooter;

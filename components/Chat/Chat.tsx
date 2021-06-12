@@ -8,6 +8,7 @@ import ChatMessage from "./ChatMessage";
 import ChatFooter from "./ChatFooter";
 import ChatInput from "./ChatInput";
 import ChatSendButton from "./ChatSendButton";
+import { View, Text } from "react-native";
 
 
 interface Props {
@@ -18,6 +19,7 @@ interface Props {
 const Chat = ({ room, user }: Props) => {
     const [messages, setMessages] = useState(room.messages.map(mapMessageToGifted));
     const [sendMessage] = useMutation(SEND_MESSAGE);
+    const [isTyping, setIsTyping] = useState(false);
     // const [setTyping] = useMutation(SET_TYPING_USER);
 
     const handleSendMessage = useCallback((messages: IMessage[] = []) => {
@@ -32,13 +34,19 @@ const Chat = ({ room, user }: Props) => {
         <GiftedChat
             messages={messages}
             inverted={false}
+            
             user={user ? mapUserToGifted(user) : { _id: "42" }}
             onSend={msgs => handleSendMessage(msgs)}
             renderBubble={props => <ChatMessage {...props}/>}
+            
+            isTyping={isTyping}
+            onInputTextChanged={text => text && setIsTyping(true)}
+            renderFooter={() => isTyping ? <ChatFooter/> : null}
+            // renderChatFooter={() => null}
             renderInputToolbar={props => <ChatInput {...props}/>}
+
             alwaysShowSend
             renderSend={props => <ChatSendButton {...props}/>}
-            // renderFooter
         />
     );
 };
