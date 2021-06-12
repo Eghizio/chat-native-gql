@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Alert, View } from "react-native";
+import { Alert } from "react-native";
 import styled from "styled-components/native";
 import ScreenLayout from "../../components/ScreenLayout";
 import Heading from "../../components/Heading";
@@ -9,7 +9,7 @@ import Link from "../../components/Link";
 import Colors from "../../constants/Colors";
 import { useAuth } from "../../context/AuthProvider";
 import { LoginScreenProps } from "../../types/navigation";
-import { mockLoginPayload } from "../../utils/mocks";
+// import { mockLoginPayload } from "../../utils/mocks";
 import { isEmail } from "../../utils/validators";
 
 

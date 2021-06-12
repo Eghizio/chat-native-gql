@@ -8,7 +8,6 @@ import ChatMessage from "./ChatMessage";
 import ChatFooter from "./ChatFooter";
 import ChatInput from "./ChatInput";
 import ChatSendButton from "./ChatSendButton";
-import { View, Text } from "react-native";
 
 
 interface Props {
@@ -51,11 +50,11 @@ const Chat = ({ room, user }: Props) => {
             isTyping={isTyping}
             onInputTextChanged={handleTyping}
             renderFooter={() => isTyping ? <ChatFooter/> : null}
-            // renderChatFooter={() => null}
             renderInputToolbar={props => <ChatInput {...props}/>}
 
             alwaysShowSend
             renderSend={props => <ChatSendButton {...props}/>}
+            keyboardShouldPersistTaps="always"
         />
     );
 };

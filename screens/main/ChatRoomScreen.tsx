@@ -1,5 +1,4 @@
 import React from "react";
-import { View, Text } from "react-native";
 import ScreenLayout from "../../components/ScreenLayout";
 import Chat from "../../components/Chat/Chat";
 import useCurrentUser from "../../hooks/useCurrentUser";

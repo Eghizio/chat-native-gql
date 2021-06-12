@@ -20,22 +20,12 @@ export const useAuth = () => {
 };
 
 
-const mockedToken = "string";
-const mockedUser = {
-    id: "string",
-    email: "string",
-    firstName: "string",
-    lastName: "string",
-    profilePic: "string",
-    role: "string"
-};
-
 // could use some reducer tbh
 const AuthProvider: React.FC = ({ children }) => {
     const { getItem, setItem } = useAsyncStorage("token");
     const [token, setToken] = useState("");
     const [user, setUser] = useState<AuthContextValue["user"]>(null);
-    // loading for spinner?
+
     const { data: userData, loading } = useCurrentUser();
     const [registerUser] = useMutation<{registerUser: Session["user"]}>(REGISTER_USER);
     const [loginUser] = useMutation<{loginUser: Session}>(LOGIN_USER);
@@ -66,7 +56,7 @@ const AuthProvider: React.FC = ({ children }) => {
         if(errors || !data) return null;
 
         const { token, user } = data.loginUser;
-        // yuck
+        
         setItem(token);
         setToken(token);
         setUser(user);

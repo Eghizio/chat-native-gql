@@ -1,5 +1,5 @@
-import { StackNavigationProp, StackScreenProps } from "@react-navigation/stack";
-import { RouteProp } from "@react-navigation/core";
+import { StackScreenProps, StackNavigationProp } from "@react-navigation/stack";
+// import { RouteProp } from "@react-navigation/core";
 import { Room } from "./api";
 
 // custom nav hook?

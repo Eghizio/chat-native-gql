@@ -5,7 +5,7 @@ import ChatRoomScreen from "../screens/main/ChatRoomScreen";
 import { MainStackParamList } from "../types/navigation";
 import Colors from "../constants/Colors";
 import HeaderRight from "../components/HeaderRight";
-import Fonts from "../constants/Fonts";
+import Fonts from "../constants/Fonts"; // probably should move header styles
 
 const MainStack = createStackNavigator<MainStackParamList>();
 

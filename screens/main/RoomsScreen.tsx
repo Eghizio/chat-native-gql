@@ -1,11 +1,8 @@
 import React from "react";
-import { ActivityIndicator } from "react-native";
-import styled from "styled-components/native";
 import Button from "../../components/Button";
 import Loader from "../../components/Loader";
 import RoomsList from "../../components/RoomsList";
 import ScreenLayout from "../../components/ScreenLayout";
-import Colors from "../../constants/Colors";
 import { useAuth } from "../../context/AuthProvider";
 import useUsersRooms from "../../hooks/useUsersRooms";
 import { RoomsScreenProps } from "../../types/navigation";

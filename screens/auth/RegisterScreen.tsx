@@ -6,13 +6,12 @@ import Heading from "../../components/Heading";
 import FormField from "../../components/FormField";
 import Link from "../../components/Link";
 import Button from "../../components/Button";
-import Colors from "../../constants/Colors";
 import { useAuth } from "../../context/AuthProvider";
 import { RegisterScreenProps } from "../../types/navigation";
 // import { mockRegisterPayload } from "../../utils/mocks";
 import { isEmail, passwordsMatch } from "../../utils/validators";
 
-// why is that button style messed up?
+
 interface Props extends RegisterScreenProps {};
 
 const RegisterScreen = ({ navigation }: Props) => {
