@@ -5,6 +5,7 @@ import Colors from "../../constants/Colors";
 // according to the design, dates should be off,
 // tho im keeping them for better UX
 const ChatMessage = (props: BubbleProps<IMessage>) => {
+    // long messages (with links) go over the screen on web  ;/
     return (
         <Bubble
             {...props}

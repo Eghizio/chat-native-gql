@@ -20,3 +20,11 @@ export const mapMessageToGifted = ({
     text,
     user: mapUserToGifted(user)
 });
+
+
+export const sortByMessageDate = (messages: IMessage[]) =>
+    [...messages].sort((a ,b) =>
+        (new Date(a.createdAt).getTime() >= new Date(b.createdAt).getTime())
+        ? -1
+        : 1
+    );
