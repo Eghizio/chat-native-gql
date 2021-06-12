@@ -63,8 +63,9 @@ interface ActiveProps {
     readonly isActive: boolean;
 };
 
+const SCREEN_LAYOUT_PADDING = 24;
 const Card = styled.View<ActiveProps>`
-    width: ${`${Layout.window.width}px`};
+    width: ${`${Layout.window.width-SCREEN_LAYOUT_PADDING}px`};
     padding: 15px;
     flex-direction: row;
     align-items: center;
