@@ -1,11 +1,11 @@
 import { createHttpLink } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { GQL_HTTP_URI, TOKEN } from "./env";
+import { GQL_HTTP_URL, TOKEN } from "./env";
 
 
 export const httpLink = createHttpLink({
-    uri: GQL_HTTP_URI
+    uri: GQL_HTTP_URL
 });
 
 export const authLink = setContext(async (_, { headers }) => {
