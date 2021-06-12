@@ -70,8 +70,7 @@ const Card = styled.View<ActiveProps>`
     align-items: center;
     border-radius: 12px;
     background-color: ${props => props.isActive ? Colors.PLUM.NORMAL : Colors.WHITE};
-    margin: 15px 0; 
-`; // temp margin, gotta move it to list spacing/separator
+`;
 const RoomImage = styled.Image`
     width: 64px;
     height: 64px;

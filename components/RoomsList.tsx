@@ -33,7 +33,8 @@ const RoomsList = ({ rooms }: Props) => {
                         <RoomCard room={(room as UserRoom)}/>
                     </TouchableOpacity>
                 }
-                contentContainerStyle={{flex: 1, alignItems: "center"}}
+                contentContainerStyle={{flex: 1, alignItems: "center", }}
+                ItemSeparatorComponent={() => <Separator/>}
             />
         </Wrapper>
     );
@@ -42,6 +43,10 @@ const RoomsList = ({ rooms }: Props) => {
 const Wrapper = styled.View`
     flex: 1;
     align-items: center;
+`;
+
+const Separator = styled.View`
+    height: 15px;
 `;
 
 export default RoomsList;
