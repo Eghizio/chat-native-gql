@@ -6,6 +6,8 @@ import useRoom from "../hooks/useRoom";
 import { UserRoom } from "../types/api";
 // import { limitText } from "../utils/limitText";
 import ProfileIcon from "./Icons/ProfileIcon";
+import { parseMessageTime } from "../utils/parseMessageTime";
+
 
 // fix length, make last message time, if read (last visited)
 interface Props {
@@ -14,18 +16,22 @@ interface Props {
 
 // fixes styled-components unit Warning, if units provided causes expo Error
 const circle = { borderRadius: 50 };
+const DEFAULT_LAST_MESSAGE = " " as const;
+const TIMEZONE_ADJUSTMENT = 9; // server is GMT (-2h); 9*15 = 2h15min
+const FIFTEEN_MIN_IN_MS = 900000*TIMEZONE_ADJUSTMENT; // 15*60*1000 * adjustment
 
 const RoomCard = ({ room }: Props) => {
     const { data: roomData } = useRoom(room.id); // for last message
 
+    // todo: are the dates sorted?
+    const lastMessage = roomData && [...roomData.room.messages].pop();
+    // kinda unsafe. what if the data format changes
+    const lastMessageTime = lastMessage && new Date(lastMessage.insertedAt);
+    const isActive = !!lastMessageTime
+        && (lastMessageTime.getTime() > (Date.now() - FIFTEEN_MIN_IN_MS)); 
 
-    // isActive, then parse to some pleasant format.
-    const lastMessageTime = Math.random() > 0.5;
-    const isActive = lastMessageTime; // todo: if less than 15min
-
-    const lastMessage = roomData
-        ? ([...roomData.room.messages].pop()?.body || " ")
-        : " ";
+    // todo: is read, last time chatroom was opened.
+    // needs context, would refactor all this logic there prolly
 
     return (
         <Card isActive={isActive}>
@@ -37,7 +43,7 @@ const RoomCard = ({ room }: Props) => {
                 <Activity>
                     {isActive
                     ? <ActiveIndicator style={circle}/>
-                    : <LastMessageTime>24 m ago</LastMessageTime>
+                    : <LastMessageTime>{lastMessageTime && parseMessageTime(lastMessageTime)}</LastMessageTime>
                     }
                 </Activity>
                 <CardContent>
@@ -45,29 +51,12 @@ const RoomCard = ({ room }: Props) => {
                         {room.name}
                     </RoomName>
                     <LastMessage isActive={isActive} numberOfLines={1}>
-                        {lastMessage}
+                        {lastMessage?.body || DEFAULT_LAST_MESSAGE}
                     </LastMessage>
                 </CardContent>
             </Wrapper>
         </Card>
     );
-
-    // return (
-    //     <View style={styles.roomCard}>
-    //         <Image style={styles.roomImg} source={{ uri: room.roomPic }}/>
-    //         <View>
-    //             <View></View>
-    //             <View style={styles.textContainer}>
-    //                 <Text style={styles.roomName} numberOfLines={1}>
-    //                     {limitText(room.name, MAX_TEXT_LENGTH)}
-    //                 </Text>
-    //                 <Text style={styles.lastMessage} numberOfLines={1}>
-    //                     {limitText(lastMessage, MAX_TEXT_LENGTH)}
-    //                 </Text>
-    //             </View>
-    //         </View>
-    //     </View>
-    // );
 };
 
 interface ActiveProps {
@@ -89,7 +78,7 @@ const RoomImage = styled.Image`
     /* border-radius: 50; */
     background-color: ${Colors.GREY.TINT_2};
 `;
-// image uri shouldnt be an empty string
+
 const RoomImagePlaceholder = styled(ProfileIcon)`
     width: 64px;
     height: 64px;
@@ -109,7 +98,7 @@ const ActiveIndicator = styled.View`
     height: 12px;
     /* border-radius: 50; */
     background-color: ${Colors.ACTIVE};
-`; // could be gray if inactive for longer period of time
+`;
 const LastMessageTime = styled.Text`
     font-weight: 400;
     font-size: 12px;
