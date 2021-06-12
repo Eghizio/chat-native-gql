@@ -18,7 +18,7 @@ const ProfileIcon = (props: SvgProps) => {
         <Circle cx={32} cy={32} r={32} fill="#E9EAEE" />
         <Mask
             id="prefix__a"
-            maskUnits={EMaskUnits.USER_SPACE_ON_USE}
+            maskUnits={"userSpaceOnUse" as EMaskUnits.USER_SPACE_ON_USE}
             x={0}
             y={0}
             width={64}

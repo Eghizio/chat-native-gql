@@ -4,7 +4,8 @@ import Colors from "../constants/Colors";
 import Layout from "../constants/Layout";
 import useRoom from "../hooks/useRoom";
 import { UserRoom } from "../types/api";
-import { limitText } from "../utils/limitText";
+// import { limitText } from "../utils/limitText";
+import ProfileIcon from "./Icons/ProfileIcon";
 
 // fix length, make last message time, if read (last visited)
 interface Props {
@@ -20,7 +21,7 @@ const RoomCard = ({ room }: Props) => {
 
     // isActive, then parse to some pleasant format.
     const lastMessageTime = Math.random() > 0.5;
-    const isActive = lastMessageTime; // if less than 15min
+    const isActive = lastMessageTime; // todo: if less than 15min
 
     const lastMessage = roomData
         ? ([...roomData.room.messages].pop()?.body || " ")
@@ -89,7 +90,7 @@ const RoomImage = styled.Image`
     background-color: ${Colors.GREY.TINT_2};
 `;
 // image uri shouldnt be an empty string
-const RoomImagePlaceholder = styled.View`
+const RoomImagePlaceholder = styled(ProfileIcon)`
     width: 64px;
     height: 64px;
     /* border-radius: 50; */
