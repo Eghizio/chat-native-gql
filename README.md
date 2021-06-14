@@ -70,7 +70,7 @@ Same with React Native as I've made only [a single project](https://github.com/E
 <img src="https://github.com/Eghizio/chat-native-gql/blob/main/.github/screenshots/screen-chat.png" alt="Chat screen screenshot" width="400"/>
 
 ## Possibilities
-I tried to implement most of the things by myself, but should have probably used 3rd party libraries.
+I tried to implement most of the things by myself, but should have probably used 3rd party libraries. I left the comments in the code to display my thought process.
 
 Here are a few things that I could improve with more time:
 
@@ -95,10 +95,12 @@ Here are a few things that I could improve with more time:
 - Weird GiftedChat behaviour: message display order, not detecting new message on Expo, bug with dates (ex. [issue](https://github.com/FaridSafi/react-native-gifted-chat/issues/1389))
 - Not working  GraphQL subscriptions (probably splitLink issue, because normal queries didn't execute at all)
 
+The codebase coud use some more refactor and clean up but I was out of time.
+
 ## Summary
 In summary I enjoyed the project a lot. Although it was challenging to complete within 3 days.
 
-I got the core functionality working (with Auth) after 1.5 day which was.
+I got the core functionality working (with Auth) after 1.5 day. The rest of the time I've spent taking care of little things and stylings.
 
 Surprisingly I was the most productive when implementing Auth screens and logic without the app running. After starting the app most of the things worked like a charm (had to make some minor fixes).
 
