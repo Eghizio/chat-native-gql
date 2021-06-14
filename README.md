@@ -58,13 +58,13 @@ Same with React Native as I've made only [a single project](https://github.com/E
 ### Trello board
 ![Trello board screenshot](https://github.com/Eghizio/chat-native-gql/blob/main/.github/screenshots/trello.png)
 ### Login screen
-![Login screen screenshot](https://github.com/Eghizio/chat-native-gql/blob/main/.github/screenshots/screen-login.png)
+![Login screen screenshot](https://github.com/Eghizio/chat-native-gql/blob/main/.github/screenshots/screen-login.png | width=320)
 ### Register screen
-![Register screen screenshot](https://github.com/Eghizio/chat-native-gql/blob/main/.github/screenshots/screen-register.png)
+![Register screen screenshot](https://github.com/Eghizio/chat-native-gql/blob/main/.github/screenshots/screen-register.png | width=320)
 ### Rooms screen
-![Rooms screen screenshot](https://github.com/Eghizio/chat-native-gql/blob/main/.github/screenshots/screen-rooms.png)
+![Rooms screen screenshot](https://github.com/Eghizio/chat-native-gql/blob/main/.github/screenshots/screen-rooms.png | width=320)
 ### Chat screen
-![Chat screen screenshot](https://github.com/Eghizio/chat-native-gql/blob/main/.github/screenshots/screen-chat.png)
+![Chat screen screenshot](https://github.com/Eghizio/chat-native-gql/blob/main/.github/screenshots/screen-chat.png | width=320)
 
 ## Possibilities
 I tried to implement most of the things by myself, but should have probably used 3rd party libraries.
