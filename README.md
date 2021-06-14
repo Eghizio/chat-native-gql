@@ -58,13 +58,16 @@ Same with React Native as I've made only [a single project](https://github.com/E
 ### Trello board
 ![Trello board screenshot](https://github.com/Eghizio/chat-native-gql/blob/main/.github/screenshots/trello.png)
 ### Login screen
-![Login screen screenshot](https://github.com/Eghizio/chat-native-gql/blob/main/.github/screenshots/screen-login.png | width=320)
+<img src="https://github.com/Eghizio/chat-native-gql/blob/main/.github/screenshots/screen-login.png" alt="Login screen screenshot" style="width:320px;"/>
+
 ### Register screen
-![Register screen screenshot](https://github.com/Eghizio/chat-native-gql/blob/main/.github/screenshots/screen-register.png | width=320)
+<img src="https://github.com/Eghizio/chat-native-gql/blob/main/.github/screenshots/screen-register.png" alt="Register screen screenshot" style="width:320px;"/>
+
 ### Rooms screen
-![Rooms screen screenshot](https://github.com/Eghizio/chat-native-gql/blob/main/.github/screenshots/screen-rooms.png | width=320)
+<img src="https://github.com/Eghizio/chat-native-gql/blob/main/.github/screenshots/screen-rooms.png" alt="Rooms screen screenshot" style="width:320px;"/>
+
 ### Chat screen
-![Chat screen screenshot](https://github.com/Eghizio/chat-native-gql/blob/main/.github/screenshots/screen-chat.png | width=320)
+<img src="https://github.com/Eghizio/chat-native-gql/blob/main/.github/screenshots/screen-chat.png" alt="Chat screen screenshot" style="width:320px;"/>
 
 ## Possibilities
 I tried to implement most of the things by myself, but should have probably used 3rd party libraries.
