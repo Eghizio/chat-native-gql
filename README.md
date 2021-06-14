@@ -58,16 +58,16 @@ Same with React Native as I've made only [a single project](https://github.com/E
 ### Trello board
 ![Trello board screenshot](https://github.com/Eghizio/chat-native-gql/blob/main/.github/screenshots/trello.png)
 ### Login screen
-<img src="https://github.com/Eghizio/chat-native-gql/blob/main/.github/screenshots/screen-login.png" alt="Login screen screenshot" style="width:320px;"/>
+<img src="https://github.com/Eghizio/chat-native-gql/blob/main/.github/screenshots/screen-login.png" alt="Login screen screenshot" width="200"/>
 
 ### Register screen
-<img src="https://github.com/Eghizio/chat-native-gql/blob/main/.github/screenshots/screen-register.png" alt="Register screen screenshot" style="width:320px;"/>
+<img src="https://github.com/Eghizio/chat-native-gql/blob/main/.github/screenshots/screen-register.png" alt="Register screen screenshot" width="200"/>
 
 ### Rooms screen
-<img src="https://github.com/Eghizio/chat-native-gql/blob/main/.github/screenshots/screen-rooms.png" alt="Rooms screen screenshot" style="width:320px;"/>
+<img src="https://github.com/Eghizio/chat-native-gql/blob/main/.github/screenshots/screen-rooms.png" alt="Rooms screen screenshot" width="200"/>
 
 ### Chat screen
-<img src="https://github.com/Eghizio/chat-native-gql/blob/main/.github/screenshots/screen-chat.png" alt="Chat screen screenshot" style="width:320px;"/>
+<img src="https://github.com/Eghizio/chat-native-gql/blob/main/.github/screenshots/screen-chat.png" alt="Chat screen screenshot" width="200"/>
 
 ## Possibilities
 I tried to implement most of the things by myself, but should have probably used 3rd party libraries.
