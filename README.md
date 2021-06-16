@@ -95,7 +95,7 @@ Here are a few things that I could improve with more time:
 - Weird GiftedChat behaviour: message display order, not detecting new message on Expo, bug with dates (ex. [issue](https://github.com/FaridSafi/react-native-gifted-chat/issues/1389))
 - Not working  GraphQL subscriptions (probably splitLink issue, because normal queries didn't execute at all)
 
-The codebase coud use some more refactor and clean up but I was out of time.
+The codebase coud use some more [refactor](https://github.com/Eghizio/chat-native-gql/tree/refactor) and clean up but I was out of time.
 
 ## Summary
 In summary I enjoyed the project a lot. Although it was challenging to complete within 3 days.

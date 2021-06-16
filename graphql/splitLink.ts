@@ -1,8 +1,8 @@
 // From https://hexdocs.pm/absinthe/apollo.html#using-a-websocket-link
 
-import { ApolloLink, split } from '@apollo/client';
+import { split } from '@apollo/client';
 import { getMainDefinition } from '@apollo/client/utilities';
-import { httpLink } from './httpLink';
+import { authLink, httpLink } from './httpLink';
 import { wsLink } from './wsLink';
 
 // The split function takes three parameters:
@@ -18,6 +18,7 @@ export const splitLink = split(
             definition.operation === 'subscription'
         );
     },
-    (wsLink as ApolloLink), //  ¯\_(ツ)_/¯
-    httpLink,
+    // @ts-ignore
+    wsLink, //  ¯\_(ツ)_/¯
+    authLink.concat(httpLink),
 );

@@ -4,7 +4,7 @@ import { splitLink } from "./splitLink";
 
 export const client = new ApolloClient({
     link: authLink.concat(httpLink),
-    // link: splitLink, // doesnt work for some reason ¯\_(ツ)_/¯
+    // link: splitLink,
     cache: new InMemoryCache()
 });
 
