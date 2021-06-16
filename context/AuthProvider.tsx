@@ -7,7 +7,7 @@ import { AuthContextValue } from "../types/auth";
 import { Session } from "../types/api";
 import Loader from "../components/Loader";
 
-
+// needs refactor
 const AuthContext = createContext<AuthContextValue | undefined>(undefined);
 
 export const useAuth = () => {
